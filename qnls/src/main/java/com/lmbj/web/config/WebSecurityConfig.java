@@ -41,47 +41,52 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.eraseCredentials(false);
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .and()
-                .csrf().disable() //默认开启
-                .formLogin()
+                .antMatchers("/").permitAll();
+
+        http.csrf().disable(); //默认开启
+
+        http.formLogin()
                 .loginPage("/login").permitAll()
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .successHandler(loginSuccessHandler())
-                .defaultSuccessUrl("/", false)
-                .and()
-                .logout()
+                .defaultSuccessUrl("/login", false)
+                .successHandler(loginSuccessHandler());//用户名密码登录成功处理
+
+        http.logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
-                .and()
-                .rememberMe()
+                .invalidateHttpSession(true);
+
+        http.rememberMe()
                 .tokenValiditySeconds(1209600)//如果用户不点击退出链接，会记住用户，下次不需要登录
-                .tokenRepository(tokenRepository());
+                .tokenRepository(tokenRepository())
+                .authenticationSuccessHandler(loginSuccessHandler());//通过remember-me登录成功处理
+
+        http.sessionManagement()
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(true);
     }
 
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(4);
     }
 
 
     @Bean
-    public JdbcTokenRepositoryImpl tokenRepository(){
+    public JdbcTokenRepositoryImpl tokenRepository() {
         JdbcTokenRepositoryImpl jdbcTokenRepositoryImpl = new JdbcTokenRepositoryImpl();
         jdbcTokenRepositoryImpl.setDataSource(druidDataSource);
         return jdbcTokenRepositoryImpl;
     }
 
-
     @Bean
-    public LoginSuccessHandler loginSuccessHandler(){
+    public LoginSuccessHandler loginSuccessHandler() {
         return new LoginSuccessHandler();
     }
+
 }

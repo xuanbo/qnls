@@ -6,14 +6,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lmbj.web.entity.User;
+import com.lmbj.web.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
-import com.lmbj.web.entity.User;
-import org.springframework.stereotype.Component;
 
-@Component
 public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public void onAuthenticationSuccess(
@@ -22,9 +26,17 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 			Authentication authentication) 
 					throws ServletException, IOException {
 		//获得授权后可得到用户信息可使用UserService进行数据库操作,记录用户的登录日志等
-		User user = (User) authentication.getPrincipal();
-		System.out.println("登录成功: " + user.toString());
-		System.out.println("ip:" + getIpAddress(request));
+		Object object = authentication.getPrincipal();
+		User USER = null;
+		if (object != null && object instanceof UserDetails){
+			String name = ((UserDetails) object).getUsername();
+			USER = userService.getByName(name);
+		}
+		if (USER != null){
+			request.getSession().setAttribute("USER",USER);
+			System.out.println("登录成功: " + USER.getName());
+			System.out.println("ip:" + getIpAddress(request));
+		}
 		super.onAuthenticationSuccess(request, response, authentication);
 	}
 	
@@ -47,5 +59,4 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 		}
 		return ip;
 	}
-
 }

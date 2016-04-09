@@ -1,6 +1,8 @@
 package com.lmbj.web.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Set;
 
 /**
@@ -10,19 +12,49 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
 
+    /*
+        主键id
+     */
     @Id
     @GeneratedValue
     @Column(name = "user_id", length = 10)
     private int id;
 
+    /*
+        用户登录名
+     */
     @Column(name = "user_name", length = 20)
     private String name;
 
+    /*
+        用户密码
+     */
     @Column(name = "user_password", length = 20)
     private String password;
 
+    /*
+        用户昵称
+     */
+    @Column(name = "user_nickname", length = 50)
+    private String nickname;
+
+    /*
+        用户邮箱
+     */
+    @Column(name = "user_email", length = 20)
+    private String email;
+
+    /*
+        用户头像
+     */
+    @Column(name = "user_photo")
+    private byte[] photo;
+
+    /*
+        用户角色
+     */
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "userrole",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")}
@@ -70,12 +102,39 @@ public class User {
         this.roles = roles;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", email='" + email + '\'' +
+                ", photo=" + Arrays.toString(photo) +
                 ", roles=" + roles +
                 '}';
     }
