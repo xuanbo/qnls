@@ -29,6 +29,6 @@
 
 
 <#-- copyright -->
-<#macro copyright name data>
-@${name} ${data} All rights reserved.
+<#macro copyright name date>
+@${name} ${date} All rights reserved.
 </#macro>

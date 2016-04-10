@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>admin</title>
-</head>
-<body>
-    <h1>青年旅社</h1>
-    <a href="/logout">退出</a>
-</body>
-</html>
+<#import "common/common.ftl" as c>
+<@c.htmlHead title="admin">
+
+</@c.htmlHead>
+<@c.htmlBody>
+    <h1>青年侣社</h1>
+    <a href="/logout">注销</a>
+</@c.htmlBody>

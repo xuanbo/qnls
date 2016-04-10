@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>login</title>
-</head>
-<body>
+<#-- 用户登录页面 -->
+<#import "common/common.ftl" as c>
+<@c.htmlHead title="login">
+
+</@c.htmlHead>
+<@c.htmlBody>
     <form action="/login" method="post">
-        用户名 : <input type="text" name="username"/>
-        密码: <input type="password" name="password"/>
-        记住我: <input type="checkbox" name="remember-me" value="true">
+        用户名 : <input type="text" name="username" placeholder="用户名：" />
+        密码: <input type="password" name="password" placeholder="密码：" />
+        记住密码: <input type="checkbox" name="remember-me" value="true" />
         <input type="submit" value="登录"/>
     </form>
-</body>
-</html>
+</@c.htmlBody>
