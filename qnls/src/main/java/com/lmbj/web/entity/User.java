@@ -20,7 +20,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "user_id", length = 10)
-    private int id;
+    private Integer id;
 
     /*
         用户登录名
@@ -53,6 +53,12 @@ public class User implements Serializable {
     private byte[] photo;
 
     /*
+        用户累积分数
+     */
+    @Column(name = "user_score")
+    private Integer score;
+
+    /*
         用户角色
      */
     @ManyToMany(fetch = FetchType.EAGER)
@@ -64,17 +70,21 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String name, String password, Set<Role> roles) {
+    public User(String name, String password, String nickname, String email, byte[] photo, Integer score, Set<Role> roles) {
         this.name = name;
         this.password = password;
+        this.nickname = nickname;
+        this.email = email;
+        this.photo = photo;
+        this.score = score;
         this.roles = roles;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -126,6 +136,14 @@ public class User implements Serializable {
         this.photo = photo;
     }
 
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -134,7 +152,7 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", email='" + email + '\'' +
-                ", photo=" + Arrays.toString(photo) +
+                ", score=" + score +
                 ", roles=" + roles +
                 '}';
     }

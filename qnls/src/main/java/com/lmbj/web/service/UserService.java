@@ -9,14 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @Description
  * @date 2016/4/9.
  */
-public interface UserService {
-
-    /**
-     * 保存User对象，如果是持久态则更新
-     * @param user
-     */
-    @Transactional
-    void save(User user);
+public interface UserService extends BaseService<User, Integer> {
 
     /**
      * 根据name获取User
@@ -26,11 +19,4 @@ public interface UserService {
     @Transactional(readOnly = true)
     User getByName(String name);
 
-    /**
-     * 根据id获取User
-     * @param id
-     * @return
-     */
-    @Transactional(readOnly = true)
-    User findOne(int id);
 }

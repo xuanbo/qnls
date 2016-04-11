@@ -1,4 +1,4 @@
-package com.lmbj.web.Controller;
+package com.lmbj.web.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -30,4 +30,5 @@ public class HomeController {
     public String admin() {
         return "admin";
     }
+
 }

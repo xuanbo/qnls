@@ -1,0 +1,103 @@
+#head {
+    height: 50px;
+    width: 100%;
+}
+
+#head ol {
+    height: 100%;
+    width: 100%;
+    font-size: 25px;
+    background-color: #20B2AA;
+    border-radius: 0px;
+}
+
+#head ol li a {
+    color: #fff;
+}
+
+#head ol li a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+#head .breadcrumb > li + li::before {
+    color: #fff;
+}
+
+#container #dreams {
+    margin-top: 20px;
+}
+
+#container #dreams .dream {
+    position: relative;
+    height: 200px;
+    margin-top: 10px;
+}
+
+#container #dreams .dream .userPhoto {
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    background-color: #20B2AA;
+}
+
+#container #dreams .dream .userPhoto img {
+    width: 100%;
+    height: 100%;
+}
+
+#container #dreams .dream .dreamContent {
+    border-top: 1px solid #20B2AA;
+    border-bottom: 1px solid #20B2AA;
+    position: absolute;
+    left: 220px;
+    height: 100%;
+    width: 70%;
+}
+
+#container #dreams .dream .dreamContent .dreamTitle {
+    font-size: 20px;
+}
+
+#container #dreams .dream .dreamContent .dreamUser {
+    position: absolute;
+    bottom: 5px;
+}
+
+#container #page {
+    position: relative;
+    width: 50%;
+    margin: 0 25%;
+}
+
+#addDream {
+    position: fixed;
+    top: 40%;
+    right: 2%;
+    width: 80px;
+    height: 80px;
+    background-color: #2fb289;
+    border-radius: 40px;
+    border: 1px #2fb289;
+    font-size: 40px;
+    line-height: 70px;
+    color: #fff;
+}
+#addDream:hover{
+    position: fixed;
+    top: 40%;
+    right: 2%;
+    width: 100px;
+    height: 100px;
+    background-color: #20B2AA;
+    border-radius: 50px;
+    border: 1px #20B2AA;
+    font-size: 50px;
+    line-height: 90px;
+    color: #fff;
+}
+
+#error{
+    color: #ff0000;
+    font-size: 20px;
+}

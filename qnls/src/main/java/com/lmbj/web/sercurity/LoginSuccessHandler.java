@@ -33,7 +33,10 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 			USER = userService.getByName(name);
 		}
 		if (USER != null){
-			request.getSession().setAttribute("USER",USER);
+			User user = new User();
+			user.setId(USER.getId());
+			user.setName(USER.getName());
+			request.getSession().setAttribute("USER",user);
 			System.out.println("登录成功: " + USER.getName());
 			System.out.println("ip:" + getIpAddress(request));
 		}

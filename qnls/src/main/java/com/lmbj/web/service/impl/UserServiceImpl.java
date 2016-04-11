@@ -4,6 +4,9 @@ import com.lmbj.web.dao.UserRepository;
 import com.lmbj.web.entity.User;
 import com.lmbj.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,24 +15,15 @@ import org.springframework.stereotype.Service;
  * @date 2016/4/9 01:32
  */
 @Service("userService")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<User, Integer> implements UserService {
 
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    public void save(User user) {
-        userRepository.save(user);
-    }
 
     @Override
     public User getByName(String name) {
         return userRepository.getByName(name);
-    }
-
-    @Override
-    public User findOne(int id) {
-        return userRepository.findOne(id);
     }
 
 }

@@ -1,8 +1,9 @@
-package com.lmbj.web.Controller;
+package com.lmbj.web.controller;
 
 import com.lmbj.web.entity.User;
 import com.lmbj.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,8 @@ import java.io.*;
  * @date 2016/4/9 16:57
  */
 @Controller
+@RequestMapping("/personal")
+@PreAuthorize("hasAuthority('USER')")
 public class UserController {
 
     @Autowired
@@ -29,14 +32,14 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/personal/{id}", method = RequestMethod.GET)
-    public String personal(@PathVariable int id, ModelMap map) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String personal(@PathVariable Integer id, ModelMap map) {
         User user = userService.findOne(id);
         map.addAttribute("user", user);
         return "user/personal";
     }
 
-    /*@RequestMapping(value = "/personal/{id}", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public void personal(@PathVariable int id) throws IOException {
         User user = userService.findOne(1);
         File file = new File("d:/user.png");
@@ -57,8 +60,8 @@ public class UserController {
      *
      * @return
      */
-    @RequestMapping(value = "/personal/{id}", method = RequestMethod.PUT)
-    public boolean personalModify(@PathVariable int id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public boolean personalModify(@PathVariable Integer id) {
         User user = userService.findOne(id);
         return true;
     }
@@ -69,8 +72,8 @@ public class UserController {
      * @param id
      * @param response
      */
-    @RequestMapping(value = "/personal/{id}/photo", method = RequestMethod.GET)
-    public void getUserPhoto(@PathVariable int id, HttpServletResponse response) {
+    @RequestMapping(value = "/{id}/photo", method = RequestMethod.GET)
+    public void getUserPhoto(@PathVariable Integer id, HttpServletResponse response) {
         User user = userService.findOne(id);
         byte[] photo = user.getPhoto();
         try {
@@ -86,9 +89,9 @@ public class UserController {
      * @param photo
      * @return
      */
-    @RequestMapping(value = "/personal/{id}/photo", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}/photo", method = RequestMethod.PUT)
     @ResponseBody
-    public boolean updateUserPhoto(@PathVariable int id, MultipartFile photo) {
+    public boolean updateUserPhoto(@PathVariable Integer id, MultipartFile photo) {
         User user = userService.findOne(id);
         try {
             user.setPhoto(photo.getBytes());
