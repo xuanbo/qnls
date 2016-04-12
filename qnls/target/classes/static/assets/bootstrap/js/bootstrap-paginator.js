@@ -652,6 +652,4 @@
 
     $.fn.bootstrapPaginator.Constructor = BootstrapPaginator;
 
-
-
 }(window.jQuery));

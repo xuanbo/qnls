@@ -3,12 +3,14 @@ package com.lmbj.web.service.impl;
 import com.lmbj.web.dao.DreamCommentReplyRepository;
 import com.lmbj.web.entity.DreamCommentReply;
 import com.lmbj.web.service.DreamCommentReplyService;
+import com.lmbj.web.service.DreamCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.*;
 
@@ -23,6 +25,10 @@ public class DreamCommentReplyServiceImpl extends BaseServiceImpl<DreamCommentRe
     @Autowired
     private DreamCommentReplyRepository dreamCommentReplyRepository;
 
+    @Autowired
+    private DreamCommentService dreamCommentService;
+
+    @Transactional(readOnly = true)
     @Override
     public Page<DreamCommentReply> findAllByParentDreamCommentId(Integer parentDreamCommentId, int pageNumber, int pageSize) {
         Specification<DreamCommentReply> specification = new Specification<DreamCommentReply>() {
@@ -35,5 +41,17 @@ public class DreamCommentReplyServiceImpl extends BaseServiceImpl<DreamCommentRe
         };
         PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.ASC, "id");
         return dreamCommentReplyRepository.findAll(specification, pageRequest);
+    }
+
+    /**
+     * save回复的时候，更新评论的条数加一
+     *
+     * @param dreamCommentReply
+     */
+    @Transactional
+    @Override
+    public void save(DreamCommentReply dreamCommentReply) {
+        super.save(dreamCommentReply);
+        dreamCommentService.updateDreamCommentById(dreamCommentReply.getParentDreamCommentId());
     }
 }

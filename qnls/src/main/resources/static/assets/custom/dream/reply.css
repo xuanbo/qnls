@@ -1,0 +1,28 @@
+/*
+    head
+*/
+#head {
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 50;
+}
+#head ol {
+    height: 100%;
+    width: 100%;
+    font-size: 25px;
+    background-color: #20B2AA;
+    border-radius: 0px;
+    color: #ffffff;
+}
+#head ol li a {
+    color: #fff;
+}
+#head ol li a:hover {
+    color: #000;
+    text-decoration: none;
+}
+#head .breadcrumb > li + li::before {
+    color: #fff;
+}

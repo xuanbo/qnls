@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -22,5 +24,9 @@ public interface DreamCommentRepository extends JpaRepository<DreamComment, Inte
      * @return
      */
     List<DreamComment> findByDreamId(Integer dreamId);
+
+    @Modifying
+    @Query("update DreamComment dc set dc.replyCount = dc.replyCount + 1 where dc.id = ?1")
+    int updateDreamCommentById(Integer id);
 
 }

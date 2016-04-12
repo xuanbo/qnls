@@ -17,7 +17,7 @@ public class DreamComment {
      */
     @Id
     @GeneratedValue
-    @Column(name = "dreamComment_id")
+    @Column(name = "dreamComment_id", length = 20)
     private Integer id;
 
     /*
@@ -41,7 +41,7 @@ public class DreamComment {
     /*
         评论的时间
      */
-    @Column(name = "dreamComment_commentTime")
+    @Column(name = "dreamComment_commentTime", length = 20)
     private String commentTime;
 
     /*

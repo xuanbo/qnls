@@ -16,7 +16,7 @@
 <div id="head">
     <ol class="breadcrumb">
         <li><a href="/">青年侣社</a></li>
-        <li class="active"><a href="/dream/list">梦想万事屋</a></li>
+        <li><a href="/dream/list">梦想万事屋</a></li>
     </ol>
 </div>
 
@@ -52,13 +52,15 @@
 
                 </div>
             </#list>
+        <#else>
+            <h1 style="margin-top: 100px; text-align: center">什么都没有呢，留下你的足迹吧！</h1>
         </#if>
-    </div>
 
-    <#-- 分页 -->
-    <div id="page" data-current="${current}"
+        <#-- 分页 -->
+        <div id="page" data-current="${current}"
              data-size="${size}"
              data-totalPages="${totalPages}">
+        </div>
     </div>
 </div>
 

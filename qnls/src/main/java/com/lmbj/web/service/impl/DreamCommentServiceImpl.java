@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.*;
 /**
@@ -22,6 +23,7 @@ public class DreamCommentServiceImpl extends BaseServiceImpl<DreamComment, Integ
     @Autowired
     private DreamCommentRepository dreamCommentRepository;
 
+    @Transactional(readOnly = true)
     @Override
     public Page<DreamComment> findByDreamId(Integer dreamId, Integer pageNumber, Integer pageSize) {
         Specification<DreamComment> specification = new Specification<DreamComment>() {
@@ -34,5 +36,11 @@ public class DreamCommentServiceImpl extends BaseServiceImpl<DreamComment, Integ
         };
         PageRequest pageRequest = new PageRequest(pageNumber -1, pageSize, Sort.Direction.ASC, "id");
         return dreamCommentRepository.findAll(specification, pageRequest);
+    }
+
+    @Transactional
+    @Override
+    public int updateDreamCommentById(Integer id) {
+        return dreamCommentRepository.updateDreamCommentById(id);
     }
 }

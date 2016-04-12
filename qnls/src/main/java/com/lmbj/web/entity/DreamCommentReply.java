@@ -42,23 +42,23 @@ public class DreamCommentReply {
     /*
         回复的内容
      */
-    @Column(name = "dreamCommentReply_relyContent")
-    private String relyContent;
+    @Column(name = "dreamCommentReply_replyContent")
+    private String replyContent;
 
     /*
         回复的时间
      */
-    @Column(name = "dreamCommentReply_relyTime")
+    @Column(name = "dreamCommentReply_replyTime")
     private String replyTime;
 
     public DreamCommentReply() {
     }
 
-    public DreamCommentReply(String username, String replyUsername, Integer parentDreamCommentId, String relyContent, String replyTime) {
+    public DreamCommentReply(String username, String replyUsername, Integer parentDreamCommentId, String replyContent, String replyTime) {
         this.username = username;
         this.replyUsername = replyUsername;
         this.parentDreamCommentId = parentDreamCommentId;
-        this.relyContent = relyContent;
+        this.replyContent = replyContent;
         this.replyTime = replyTime;
     }
 
@@ -102,22 +102,22 @@ public class DreamCommentReply {
         this.replyTime = replyTime;
     }
 
-    public String getRelyContent() {
-        return relyContent;
+    public String getReplyContent() {
+        return replyContent;
     }
 
-    public void setRelyContent(String relyContent) {
-        this.relyContent = relyContent;
+    public void setReplyContent(String replyContent) {
+        this.replyContent = replyContent;
     }
 
     @Override
     public String toString() {
         return "DreamCommentReply{" +
                 "id=" + id +
-                ", username=" + username +
-                ", replyUsername=" + replyUsername +
+                ", username='" + username + '\'' +
+                ", replyUsername='" + replyUsername + '\'' +
                 ", parentDreamCommentId=" + parentDreamCommentId +
-                ", relyContent='" + relyContent + '\'' +
+                ", replyContent='" + replyContent + '\'' +
                 ", replyTime='" + replyTime + '\'' +
                 '}';
     }

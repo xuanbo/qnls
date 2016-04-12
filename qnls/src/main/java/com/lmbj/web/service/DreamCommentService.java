@@ -22,4 +22,6 @@ public interface DreamCommentService extends BaseService<DreamComment, Integer> 
      * @return
      */
     Page<DreamComment> findByDreamId(Integer dreamId, Integer pageNumber, Integer pageSize);
+
+    int updateDreamCommentById(Integer id);
 }

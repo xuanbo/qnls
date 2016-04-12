@@ -1,0 +1,135 @@
+/*
+    head
+*/
+#head {
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    z-index: 50;
+}
+#head ol {
+    height: 100%;
+    width: 100%;
+    font-size: 25px;
+    background-color: #20B2AA;
+    border-radius: 0px;
+    color: #ffffff;
+}
+#head ol li a {
+    color: #fff;
+}
+#head ol li a:hover {
+    color: #000;
+    text-decoration: none;
+}
+#head .breadcrumb > li + li::before {
+    color: #fff;
+}
+
+
+/*
+    comments and replys
+*/
+#container{
+    margin-top: 60px;
+    width: 100%;
+}
+#container .data{
+    width: 90%;
+    margin: 0 auto;
+}
+#container .data .comment{
+
+}
+#container .data .comment .commentUser{
+    position: relative;
+    width: 100%;
+    height: 50px;
+}
+#container .data .comment .commentUser .userPhoto{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+#container .data .comment .commentUser .userPhoto img{
+    width: 100%;
+    height: 100%;
+}
+#container .data .comment .commentUser .userInfo{
+    position: absolute;
+    left: 60px;
+    width: 200px;
+}
+#container .data .comment .commentUser .userInfo .username{
+    font-size: 20px;
+}
+#container .data .comment .commentUser .userInfo .time{
+    color: #ccc;
+}
+#container .data .comment .commentUser .operator{
+    position: absolute;
+    left: 300px;
+}
+#container .data .comment .commentUser .operator .replyThisComment{
+    border: 1px solid #ccc;
+}
+#container .data .replys{
+    width: 90%;
+    margin: 0 auto;
+}
+#container .data .comment .commentContent{
+    text-indent: 50px;
+    font-size: 25px;
+}
+#container .data .replys .reply{
+    font-size: 20px;
+}
+#container .data .replys .reply span{
+    font-size: 15px;
+    color: #ccc;
+}
+#container .data .replys .reply .replyThisReply:hover{
+    font-size: 20px;
+    color: #ff0000;
+    cursor: pointer;
+}
+#container .data .replys .moreReplys{
+    font-size: 30px;
+}
+#container .data .noReply{
+    text-indent: 55px;
+}
+
+#container #page{
+    position: relative;
+    left: 40%;
+}
+
+
+
+#commentThisDream{
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    background-color: #20B2AA;
+    bottom: 0px;
+    z-index: 50;
+}
+#commentThisDream #dreamCommentInput{
+    position: absolute;
+    width: 80%;
+    left: 5%;
+    border: 1px solid #20B2AA;
+    height: 80%;
+    top: 10%;
+}
+#addDreamComment{
+    position: absolute;
+    right: 5%;
+    color: #000;
+    border-radius: 20px;
+    height: 80%;
+    line-height: 28px;
+    top: 10%;
+}

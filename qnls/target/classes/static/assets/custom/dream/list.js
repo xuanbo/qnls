@@ -35,17 +35,6 @@
         page.bootstrapPaginator(options);
 
 
-        //将分页div居中
-        var $page = $('#page');
-        var parentWidth = $page.width();
-        var $pagination = $('#page .pagination');
-        var width = $pagination.width();
-        var x = (parentWidth - width) / 2;
-        $pagination.css({
-            'margin-left': x
-        });
-
-
         // 发帖click
         $('#addDream').on('click', function () {
             // 显示modal
@@ -106,7 +95,7 @@
                                     'color': "#2fb289"
                                 });
                             }else{
-                                var m = "不知道为什么上传失败了呢！";
+                                var m = "你还没有登录呢！我不知道你是谁哦";
                                 $('#error').empty().html(m).css({
                                     'color': "#ff0000"
                                 });
@@ -114,6 +103,12 @@
                             setTimeout(function(){
                                 window.location.assign("/dream/list");
                             }, 2000);
+                        },
+                        error: function(){
+                            var m = "不知道为什么上传失败了呢！";
+                            $('#error').empty().html(m).css({
+                                'color': "#ff0000"
+                            });
                         }
                     });
                 }, 1000);
